@@ -16,6 +16,7 @@ public class Giochi {
 
     }
 
+
     public String getTitolo() {
         return titolo;
     }

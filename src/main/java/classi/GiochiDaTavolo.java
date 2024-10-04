@@ -23,7 +23,7 @@ public class GiochiDaTavolo extends Giochi {
     @Override
     public String toString() {
         return super.toString() +
-                "numeroGioctori=" + numeroGioctori +
+                "numeroGioctori=" + numeroGiocatori +
                 ", durataPartita=" + durataPartita;
     }
 }
