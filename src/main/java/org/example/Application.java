@@ -5,11 +5,9 @@ import classi.Giochi;
 import classi.GiochiDaTavolo;
 import classi.Videogiochi;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Application {
@@ -59,20 +57,67 @@ public class Application {
 
             switch (scelta) {
                 case 1:
+                    System.out.println("Scegli cosa vuoi modificare");
+                    System.out.println("1 Videogiochi;");
+                    System.out.println("2 Giochi Da Tavola;");
+                    System.out.print("Inserisci la tua scelta: ");
+                    int scelta2 = scanner.nextInt();
+                    scanner.nextLine();
+                    switch (scelta2) {
+                        case 1:
+                            System.out.println("inserisci Titolo");
+                            String titolo = scanner.next();
+                            System.out.println("inserisci Prezzo");
+                            double prezzo = scanner.nextInt();
+                            System.out.println("inserisci la Durata");
+                            int durata = scanner.nextInt();
+                            System.out.println("inserisci il genere: AVVENTURA,ARCADE,MISTERY,AZIONE");
+                            GeneriVideogiochi genere = GeneriVideogiochi.valueOf(scanner.next().toUpperCase());
+                            System.out.println("inserisci la Piattaforma");
+                            String piattaforma = scanner.next();
+                            System.out.println("inserisci la Data ANNO-MESE-GIORNO-0-0");
+                            LocalDate annoPubblicazione = LocalDate.parse(scanner.next());
+                            System.out.println("Inserisci l'id");
+                            int id = scanner.nextInt();
+
+                            Videogiochi nuovoVideogioco = new Videogiochi(titolo, annoPubblicazione.atStartOfDay(), prezzo, id, piattaforma, durata, genere);
+                            videogiochi.add(nuovoVideogioco);
+                            videogiochi.forEach(videogiochi1 -> System.out.println(videogiochi1));
 
 
-                    break;
-                case 2:
-                    System.out.println("inserisci un ID:");
-                    int ricercaId = scanner.nextInt();
-                    List<Giochi> filtraId = giochi.stream().filter(giochi1 -> giochi1.getId() == ricercaId).collect(Collectors.toList());
-                    filtraId.forEach(System.out::println);
+                            break;
+
+                        case 2:
+                            System.out.println("inserisci Titolo");
+                            String titolo1 = scanner.next();
+                            System.out.println("inserisci Prezzo");
+                            double prezzo1 = scanner.nextInt();
+                            System.out.println("inserisci la Durata");
+                            int durata1 = scanner.nextInt();
+                            System.out.println("inserisci il numero di giocatori:");
+                            int numeroGiocatori = scanner.nextInt();
+                            System.out.println("inserisci la Data ANNO-MESE-GIORNO");
+                            LocalDate annoPubblicazione1 = LocalDate.parse(scanner.next());
+                            System.out.println("Inserisci l'id");
+                            int id1 = scanner.nextInt();
+
+                            GiochiDaTavolo nuovoGiocoDaTavola = new GiochiDaTavolo(titolo1, annoPubblicazione1.atStartOfDay(), prezzo1, id1, numeroGiocatori, durata1);
+                            giocoDaTavolo.add(nuovoGiocoDaTavola);
+                            giocoDaTavolo.forEach(giochiDaTavolo -> System.out.println(giochiDaTavolo));
+                            break;
+
+                    }
                     break;
                 case 3:
                     System.out.println("inserisci un prezzo:");
                     int ricercaPrezzo = scanner.nextInt();
-                    List<Giochi> filtraPrezzo = giochi.stream().filter(giochi1 -> giochi1.getPrezzo() < ricercaPrezzo).collect(Collectors.toList());
-                    filtraPrezzo.forEach(System.out::println);
+                    try {
+                        List<Giochi> filtraPrezzo = giochi.stream().filter(giochi1 -> giochi1.getPrezzo() < ricercaPrezzo).collect(Collectors.toList());
+                        filtraPrezzo.forEach(System.out::println);
+                    } catch (Exception e) {
+                        System.out.println("Ricerca fallita, riprova più tardi");
+                        scanner.nextInt();
+                    }
                     break;
                 case 4:
                     System.out.println("inserisci il numero di giocatori:");
@@ -110,7 +155,22 @@ public class Application {
                     break;
                 case 6:
                     System.out.println("Ecco le tue statistiche:");
-                    List<Giochi> totaleGiochi=giochi.stream().collect(Collectors.)
+                    try {
+                        int totaleGiochi = giochi.size();
+                        int totaleVideogiochi = videogiochi.size();
+                        int totaleGiochidatavolo = giocoDaTavolo.size();
+                        System.out.println("Totale Giochi:" + totaleGiochi + " di cui " + totaleVideogiochi + " sono videogiochi e " + totaleGiochidatavolo + " sono giochi da tavolo.");
+                        OptionalDouble piuCostoso = giochi.stream().mapToDouble(giochi1 -> giochi1.getPrezzo()).max();
+                        if (piuCostoso.isPresent())
+                            System.out.println("Il prezzo più alto è di : $" + piuCostoso.getAsDouble());
+                        else System.out.println("Non è possibile trovare il prodotto più costoso");
+                        OptionalDouble mediaPrezzi = giochi.stream().mapToDouble(giochi1 -> giochi1.getPrezzo()).average();
+                        if (mediaPrezzi.isPresent())
+                            System.out.println("La media è: $" + mediaPrezzi.getAsDouble());
+                    } catch (Exception e) {
+                        System.out.println("Errore, non è stato possibile scaricare le statistiche");
+                        e.printStackTrace();
+                    }
 
                     break;
                 case 7:
@@ -204,4 +264,3 @@ public class Application {
     }
 
 }
-

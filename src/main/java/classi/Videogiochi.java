@@ -12,6 +12,7 @@ public class Videogiochi extends Giochi {
         this.piattaforma = piattaforma;
         this.durata = durata;
         this.genere = genere;
+
     }
 
     public void setPiattaforma(String piattaforma) {
