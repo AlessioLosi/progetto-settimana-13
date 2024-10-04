@@ -59,7 +59,7 @@ public class Application {
 
             switch (scelta) {
                 case 1:
-                    
+
 
                     break;
                 case 2:
@@ -109,6 +109,86 @@ public class Application {
 
                     break;
                 case 6:
+                    System.out.println("Ecco le tue statistiche:");
+                    List<Giochi> totaleGiochi=giochi.stream().collect(Collectors.)
+
+                    break;
+                case 7:
+                    System.out.println("Scegli cosa vuoi modificare");
+                    System.out.println("1 Videogiochi;");
+                    System.out.println("2 Giochi Da Tavola;");
+                    System.out.print("Inserisci la tua scelta: ");
+                    int scelta1 = scanner.nextInt();
+                    scanner.nextLine();
+                    switch (scelta1) {
+                        case 1:
+                            try {
+                                System.out.println("inserisci un ID:");
+                                int modifica = scanner.nextInt();
+
+
+                                List<Videogiochi> modificaGiochi = videogiochi.stream().filter(giochi1 -> giochi1.getId() == modifica).map(videogiochi1 -> {
+                                    System.out.println("Modifica Titolo");
+                                    String modificaTitolo = scanner.next();
+                                    System.out.println("Modifica Prezzo");
+                                    int modificaPrezzo = scanner.nextInt();
+                                    System.out.println("Modifica la Durata");
+                                    int modificaDurata = scanner.nextInt();
+                                    System.out.println("Modifica il genere: AVVENTURA,ARCADE,MISTERY,AZIONE");
+                                    String modificaGenere = String.valueOf(GeneriVideogiochi.valueOf(scanner.next().toUpperCase()));
+                                    System.out.println("Modifica la Piattaforma");
+                                    String modificaPiattaforma = scanner.next().toUpperCase();
+
+
+                                    videogiochi1.setTitolo(modificaTitolo);
+                                    videogiochi1.setPrezzo(modificaPrezzo);
+                                    videogiochi1.setDurata(modificaDurata);
+                                    videogiochi1.setGenere(GeneriVideogiochi.valueOf(modificaGenere));
+                                    videogiochi1.setPiattaforma(modificaPiattaforma);
+
+                                    return videogiochi1;
+                                }).toList();
+                                modificaGiochi.forEach(videogiochi1 -> System.out.println(videogiochi1));
+                            } catch (Exception e) {
+                                System.out.println("Errore nella modifica");
+                                e.printStackTrace();
+
+                            }
+                            break;
+
+                        case 2:
+                            try {
+                                System.out.println("inserisci un ID:");
+                                int modifica1 = scanner.nextInt();
+
+
+                                List<GiochiDaTavolo> modificaGiochiDaTavolo = giocoDaTavolo.stream().filter(giochi1 -> giochi1.getId() == modifica1).map(giochiDaTavolo -> {
+                                    System.out.println("Modifica Titolo");
+                                    String modificaTitolo = scanner.next();
+                                    System.out.println("Modifica Prezzo");
+                                    int modificaPrezzo = scanner.nextInt();
+                                    System.out.println("Modifica la Durata");
+                                    int modificaDurata = scanner.nextInt();
+                                    System.out.println("Modifica il numero di giocatori:");
+                                    int modificaGiocatori = scanner.nextInt();
+
+
+                                    giochiDaTavolo.setTitolo(modificaTitolo);
+                                    giochiDaTavolo.setPrezzo(modificaPrezzo);
+                                    giochiDaTavolo.setDurataPartita(modificaDurata);
+                                    giochiDaTavolo.setNumeroGiocatori(modificaGiocatori);
+
+                                    return giochiDaTavolo;
+                                }).toList();
+                                modificaGiochiDaTavolo.forEach(giochiDaTavolo -> System.out.println(giochiDaTavolo));
+                            } catch (Exception e) {
+                                System.out.println("Errore nella modifica");
+                                e.printStackTrace();
+
+                            }
+                            break;
+
+                    }
 
                     break;
                 case 0:

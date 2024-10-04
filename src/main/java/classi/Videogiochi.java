@@ -14,6 +14,18 @@ public class Videogiochi extends Giochi {
         this.genere = genere;
     }
 
+    public void setPiattaforma(String piattaforma) {
+        this.piattaforma = piattaforma;
+    }
+
+    public void setDurata(int durata) {
+        this.durata = durata;
+    }
+
+    public void setGenere(GeneriVideogiochi genere) {
+        this.genere = genere;
+    }
+
     @Override
     public String toString() {
         return super.toString() +

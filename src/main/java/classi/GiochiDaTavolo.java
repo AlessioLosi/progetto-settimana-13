@@ -16,8 +16,16 @@ public class GiochiDaTavolo extends Giochi {
         return numeroGiocatori;
     }
 
+    public void setNumeroGiocatori(int numeroGiocatori) {
+        this.numeroGiocatori = numeroGiocatori;
+    }
+
     public int getDurataPartita() {
         return durataPartita;
+    }
+
+    public void setDurataPartita(int durataPartita) {
+        this.durataPartita = durataPartita;
     }
 
     @Override
