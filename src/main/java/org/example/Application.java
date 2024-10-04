@@ -6,6 +6,7 @@ import classi.GiochiDaTavolo;
 import classi.Videogiochi;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -16,7 +17,7 @@ public class Application {
     public static void main(String[] args) {
         System.out.println("Progetto Settimana 13");
 
-      /*  List<Videogiochi> videogiochi = Arrays.asList(
+        List<Videogiochi> videogiochi = Arrays.asList(
                 new Videogiochi("Pokemon Scarlatto", LocalDateTime.of(2004, 03, 21, 0, 0), 20, 203, "Nintendo DS", 3, GeneriVideogiochi.AVVENTURA),
                 new Videogiochi("Pokemon Violetto", LocalDateTime.of(2022, 11, 10, 0, 0), 45, 435, "Nintendo DS", 10, GeneriVideogiochi.AVVENTURA),
                 new Videogiochi("Professor Layton", LocalDateTime.of(2009, 05, 14, 0, 0), 15, 454, "Xbox", 2, GeneriVideogiochi.MISTERY),
@@ -29,24 +30,15 @@ public class Application {
         List<GiochiDaTavolo> giocoDaTavolo = Arrays.asList(
                 new GiochiDaTavolo("Monopoly", LocalDateTime.of(2004, 05, 04, 0, 0), 40, 345, 8, 9),
                 new GiochiDaTavolo("Risiko", LocalDateTime.of(2002, 03, 21, 0, 0), 21, 478, 2, 1),
-                new GiochiDaTavolo("Scacchi", LocalDateTime.of(1900, 11, 02, 0, 0), 8, 934, 2, 2),
-                new GiochiDaTavolo("Dama", LocalDateTime.of(1980, 07, 23, 0, 0), 23, 645, 2, 3),
+                new GiochiDaTavolo("Scacchi", LocalDateTime.of(1900, 11, 02, 0, 0), 8, 934, 3, 2),
+                new GiochiDaTavolo("Dama", LocalDateTime.of(1980, 07, 23, 0, 0), 23, 645, 5, 3),
                 new GiochiDaTavolo("Puzzle", LocalDateTime.of(2003, 06, 12, 0, 0), 60, 543, 10, 23)
-        );*/
-        List<Giochi> giochi = Arrays.asList(
-                new Videogiochi("Pokemon Scarlatto", LocalDateTime.of(2004, 03, 21, 0, 0), 20, 203, "Nintendo DS", 3, GeneriVideogiochi.AVVENTURA),
-                new Videogiochi("Pokemon Violetto", LocalDateTime.of(2022, 11, 10, 0, 0), 45, 435, "Nintendo DS", 10, GeneriVideogiochi.AVVENTURA),
-                new Videogiochi("Professor Layton", LocalDateTime.of(2009, 05, 14, 0, 0), 15, 454, "Xbox", 2, GeneriVideogiochi.MISTERY),
-                new Videogiochi("Super Smash Bros", LocalDateTime.of(2005, 12, 9, 0, 0), 32, 275, "PS", 1, GeneriVideogiochi.AZIONE),
-                new Videogiochi("Crash", LocalDateTime.of(2012, 8, 31, 0, 0), 54, 768, "Xbob", 5, GeneriVideogiochi.ARCADE),
-                new Videogiochi("Sonic", LocalDateTime.of(2015, 9, 10, 0, 0), 12, 986, "PS", 7, GeneriVideogiochi.ARCADE),
-                new GiochiDaTavolo("Monopoly", LocalDateTime.of(2004, 05, 04, 0, 0), 40, 345, 8, 9),
-                new GiochiDaTavolo("Risiko", LocalDateTime.of(2002, 03, 21, 0, 0), 21, 478, 2, 1),
-                new GiochiDaTavolo("Scacchi", LocalDateTime.of(1900, 11, 02, 0, 0), 8, 934, 2, 2),
-                new GiochiDaTavolo("Dama", LocalDateTime.of(1980, 07, 23, 0, 0), 23, 645, 2, 3),
-                new GiochiDaTavolo("Puzzle", LocalDateTime.of(2003, 06, 12, 0, 0), 60, 543, 10, 23)
-
         );
+
+        List<Giochi> giochi = new ArrayList<>();
+        giochi.addAll(videogiochi);
+        giochi.addAll(giocoDaTavolo);
+
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -73,12 +65,17 @@ public class Application {
                     List<Giochi> filtraId = giochi.stream().filter(giochi1 -> giochi1.getId() == ricercaId).collect(Collectors.toList());
                     filtraId.forEach(System.out::println);
                     break;
-                    
                 case 3:
-
+                    System.out.println("inserisci un prezzo:");
+                    int ricercaPrezzo = scanner.nextInt();
+                    List<Giochi> filtraPrezzo = giochi.stream().filter(giochi1 -> giochi1.getPrezzo() < ricercaPrezzo).collect(Collectors.toList());
+                    filtraPrezzo.forEach(System.out::println);
                     break;
                 case 4:
-
+                    System.out.println("inserisci il numero di giocatori:");
+                    int ricercaGiocatori = scanner.nextInt();
+                    List<GiochiDaTavolo> filtraGiocatori = giocoDaTavolo.stream().filter(giochiDaTavolo -> giochiDaTavolo.getNumeroGiocatori() <= ricercaGiocatori).collect(Collectors.toList());
+                    filtraGiocatori.forEach(System.out::println);
                     break;
                 case 5:
 
