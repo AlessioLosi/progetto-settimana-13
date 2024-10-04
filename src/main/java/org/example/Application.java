@@ -198,6 +198,8 @@ public class Application {
                                     String modificaGenere = String.valueOf(GeneriVideogiochi.valueOf(scanner.next().toUpperCase()));
                                     System.out.println("Modifica la Piattaforma");
                                     String modificaPiattaforma = scanner.next().toUpperCase();
+                                    System.out.println("Modifica l'anno di pubblicazione (ANNO-MESE-GIORNO):");
+                                    LocalDate modificaAnno = LocalDate.parse(scanner.next());
 
 
                                     videogiochi1.setTitolo(modificaTitolo);
@@ -205,6 +207,7 @@ public class Application {
                                     videogiochi1.setDurata(modificaDurata);
                                     videogiochi1.setGenere(GeneriVideogiochi.valueOf(modificaGenere));
                                     videogiochi1.setPiattaforma(modificaPiattaforma);
+                                    videogiochi1.setAnnoPubblicazione(modificaAnno.atStartOfDay());
 
                                     return videogiochi1;
                                 }).toList();
@@ -231,12 +234,15 @@ public class Application {
                                     int modificaDurata = scanner.nextInt();
                                     System.out.println("Modifica il numero di giocatori:");
                                     int modificaGiocatori = scanner.nextInt();
+                                    System.out.println("Modifica l'anno di pubblicazione (ANNO-MESE-GIORNO):");
+                                    LocalDate modificaAnno = LocalDate.parse(scanner.next());
 
 
                                     giochiDaTavolo.setTitolo(modificaTitolo);
                                     giochiDaTavolo.setPrezzo(modificaPrezzo);
                                     giochiDaTavolo.setDurataPartita(modificaDurata);
                                     giochiDaTavolo.setNumeroGiocatori(modificaGiocatori);
+                                    giochiDaTavolo.setAnnoPubblicazione(modificaAnno.atStartOfDay());
 
                                     return giochiDaTavolo;
                                 }).toList();
