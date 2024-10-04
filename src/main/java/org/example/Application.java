@@ -105,9 +105,17 @@ public class Application {
                             giocoDaTavolo.add(nuovoGiocoDaTavola);
                             giocoDaTavolo.forEach(giochiDaTavolo -> System.out.println(giochiDaTavolo));
                             break;
-
                     }
                     break;
+
+                case 2:
+                    System.out.println("inserisci un ID:");
+                    int ricercaId = scanner.nextInt();
+                    List<Giochi> filtraId = giochi.stream().filter(giochi1 -> giochi1.getId() == ricercaId).collect(Collectors.toList());
+                    filtraId.forEach(System.out::println);
+                    break;
+
+
                 case 3:
                     System.out.println("inserisci un prezzo:");
                     int ricercaPrezzo = scanner.nextInt();
